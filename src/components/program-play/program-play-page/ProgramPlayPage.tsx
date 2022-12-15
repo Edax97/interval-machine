@@ -8,6 +8,7 @@ import {
   resetEffect,
 } from "../../../store/play-program/play-program.effects";
 import { timeLeftListener } from "../../../store/play-program/play-program.listeners";
+import { BeepComponent } from "../beep-component/BeepComponent";
 import { ControlsContainer } from "../controls/controls-container/ControlsContainer";
 import { ProgramHeaderContainer } from "../program-header/program-header-container/ProgramHeaderContainer";
 import { StepListContainer } from "../step-list/step-list-container/StepListContainer";
@@ -42,6 +43,7 @@ export function ProgramPlayPage() {
       <div className="mt-3">
         <ControlsContainer />
       </div>
+      <BeepComponent />
     </div>
   );
 }

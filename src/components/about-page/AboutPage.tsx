@@ -10,10 +10,20 @@ export function AboutPage() {
         <p className="text-muted mt-3">@Edmar Campos 2022</p>
 
         <div className="d-flex justify-content-center gap-3 gap-lg-4">
-          <a href="github.com" aria-label="My github">
+          <a
+            href="https://github.com/Edax97"
+            aria-label="My github"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FaGithub className="about-icon" />
           </a>
-          <a href="linkedin.com" aria-label="My Linkedin">
+          <a
+            href="https://www.linkedin.com/in/edwin-edmar-campos-alarcon/"
+            aria-label="My Linkedin"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FaLinkedin className="about-icon" />
           </a>
         </div>

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../store/app/hooks";
 import { setPlayingStepEffect } from "../../../../store/play-program/play-program.effects";
 import {
@@ -9,13 +9,13 @@ import { StepPlayComponent } from "../step-play-component/StepPlayComponent";
 
 export function StepListContainer() {
   const dispatch = useAppDispatch();
+
+  //step list
   const currentProgram = useAppSelector(currentPlayProgramListener);
   const stepList = useMemo(() => currentProgram?.stepList, [currentProgram]);
-
   const playStep = (stepId: number) => {
     dispatch(setPlayingStepEffect(stepId));
   };
-
   const playingStepId = useAppSelector(playingStepIdListener);
 
   return (
