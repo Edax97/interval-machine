@@ -1,0 +1,8 @@
+.time-display {
+  font-family: "Unbounded", cursive;
+  font-size: 48px;
+
+  @media screen and (min-width: 662px) {
+    font-size: 64px;
+  }
+}
