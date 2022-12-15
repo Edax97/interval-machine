@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/app/hooks";
@@ -25,7 +26,7 @@ export function NewProgramPage() {
     dispatch(newProgramEffect(program.setId));
     //Ir al grupo donde se creo el programa
     dispatch(setCurrentSetAction(program.setId));
-    navigate(`/play-program/${program.setId}/${program.id}`);
+    navigate("/programs");
   };
   const deleteProgram = () => {
     navigate("/programs");
