@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/app/hooks";
-import {
-  newProgramAction,
-  setCurrentSetAction,
-} from "../../../store/program-list/program-list.actions";
+import { setCurrentSetAction } from "../../../store/program-list/program-list.actions";
 import {
   currentSetIdListener,
   setListListener,
@@ -13,6 +10,7 @@ import {
   resetProgramAction,
   setSetIdAction,
 } from "../../../store/program/program.actions";
+import { newProgramEffect } from "../../../store/program/program.effects";
 import { SetSelectorComponent } from "../../program-list/set-selector/set-selector-component/SetSelectorComponent";
 import { useCurrentProgram } from "../hooks/use-current-program";
 import { ProgramEditorComponent } from "../program-editor-component/ProgramEditorComponent";
@@ -24,10 +22,10 @@ export function NewProgramPage() {
   const { program, setProgramName, setLoops } = useCurrentProgram();
 
   const saveProgram = () => {
-    dispatch(newProgramAction({ setId: program.setId, program }));
+    dispatch(newProgramEffect(program.setId));
     //Ir al grupo donde se creo el programa
     dispatch(setCurrentSetAction(program.setId));
-    navigate("/programs");
+    navigate(`/play-program/${program.setId}/${program.id}`);
   };
   const deleteProgram = () => {
     navigate("/programs");

@@ -2,12 +2,14 @@ import React, { useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/app/hooks";
 import {
-  editProgramAction,
   removeProgramAction,
   setCurrentSetAction,
 } from "../../../store/program-list/program-list.actions";
 import { setListListener } from "../../../store/program-list/program-list.listeners";
-import { getProgramEffect } from "../../../store/program/program.effects";
+import {
+  getProgramEffect,
+  saveProgramEffect,
+} from "../../../store/program/program.effects";
 import { useCurrentProgram } from "../hooks/use-current-program";
 import { ProgramEditorComponent } from "../program-editor-component/ProgramEditorComponent";
 
@@ -26,16 +28,10 @@ export function EditProgramPage() {
   const { program, setProgramName, setLoops } = useCurrentProgram();
 
   const saveProgram = () => {
-    dispatch(
-      editProgramAction({
-        setId: program.setId,
-        programId: program.id,
-        programUpdated: program,
-      })
-    );
+    dispatch(saveProgramEffect(program.setId, program.id));
     //Ir al grupo del programa
     dispatch(setCurrentSetAction(program.setId));
-    navigate("/programs");
+    navigate(`/play-program/${program.setId}/${program.id}`);
   };
   const deleteProgram = () => {
     dispatch(

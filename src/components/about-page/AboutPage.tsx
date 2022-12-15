@@ -7,7 +7,7 @@ export function AboutPage() {
     <div className="page-center">
       <div className="text-center">
         <h1 className="text-primary display-3">Interval Machine</h1>
-        <p className="text-muted">@Edmar Campos 2022</p>
+        <p className="text-muted mt-3">@Edmar Campos 2022</p>
 
         <div className="d-flex justify-content-center gap-3 gap-lg-4">
           <a href="github.com" aria-label="My github">

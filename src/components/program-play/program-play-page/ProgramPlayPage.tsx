@@ -33,13 +33,13 @@ export function ProgramPlayPage() {
   return (
     <div className="p-2">
       <ProgramHeaderContainer />
-      <div className="pt-3">
+      <div className="mt-3">
         <StepListContainer />
       </div>
-      <div className="pt-5">
+      <div className="mt-5">
         <TimeDisplayComponent hours={hoursLeft} minutes={minutesLeft} />
       </div>
-      <div className="pt-1">
+      <div className="mt-3">
         <ControlsContainer />
       </div>
     </div>

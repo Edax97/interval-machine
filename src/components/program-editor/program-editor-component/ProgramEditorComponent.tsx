@@ -1,10 +1,6 @@
 import { MdRepeat as RiRepeat } from "react-icons/md";
 import "./program-editor-component.scss";
-import {
-  MdCheck,
-  MdSave,
-  MdOutlineDeleteForever as MdDelete,
-} from "react-icons/md";
+import { MdSave, MdOutlineDeleteForever as MdDelete } from "react-icons/md";
 import { StepListEditorContainer } from "../step-editor/step-likst-editor-container/StepListEditorContainer";
 
 interface PropsType {

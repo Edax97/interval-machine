@@ -7,10 +7,10 @@ interface PropsType {
 }
 export function TimeDisplayComponent(props: PropsType) {
   return (
-    <div className="text-center display-3 time-display">
-      <span>
+    <div className="display-3 d-flex justify-content-center">
+      <div className="time-display p-1 rounded-4 bg-opacity-75 text-bg-dark text-center">
         {props.hours}:{props.minutes}
-      </span>
+      </div>
     </div>
   );
 }

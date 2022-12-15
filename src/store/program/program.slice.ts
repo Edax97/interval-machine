@@ -1,11 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  initialNotifier,
-  initialStep,
-} from "../../services/program-editor/initialStep";
+
 import { setItemProp, uniqueId } from "../../services/utils/id-utils";
 import { ProgramStateType } from "../../types/program/program-state.type";
 import { ProgramType } from "../../types/program/program.type";
+import { StepType } from "../../types/program/step.type";
+
+const initialStep: StepType = {
+  id: -1,
+  stepName: "",
+  stepTime: 60,
+  category: "normal",
+};
+const initialNotifier: StepType = {
+  id: -1,
+  stepName: "",
+  stepTime: 10,
+  category: "notify",
+};
 
 const initialState: ProgramStateType = {
   currentProgram: {
