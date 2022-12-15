@@ -70,6 +70,7 @@ export function StepListEditorContainer() {
       <div className="list-actions d-flex justify-content-center pt-3">
         <button
           className="me-3 btn text-white"
+          type="button"
           style={{ backgroundColor: stepStyles.normal }}
           onClick={addStep}
         >
@@ -77,6 +78,7 @@ export function StepListEditorContainer() {
         </button>
         <button
           className="btn text-white"
+          type="button"
           style={{ backgroundColor: stepStyles.notify }}
           onClick={addNotifier}
         >

@@ -1,6 +1,10 @@
 import { MdRepeat as RiRepeat } from "react-icons/md";
 import "./program-editor-component.scss";
-import { MdCheck, MdOutlineDeleteForever } from "react-icons/md";
+import {
+  MdCheck,
+  MdSave,
+  MdOutlineDeleteForever as MdDelete,
+} from "react-icons/md";
 import { StepListEditorContainer } from "../step-editor/step-likst-editor-container/StepListEditorContainer";
 
 interface PropsType {
@@ -14,18 +18,22 @@ interface PropsType {
 
 export function ProgramEditorComponent(props: PropsType) {
   return (
-    <>
+    <form
+      onSubmit={(ev) => {
+        ev.preventDefault();
+        props.saveProgram();
+      }}
+    >
       <div className="d-flex align-items-center">
-        <div className="">
-          <input
-            id="program-name"
-            className="form-control bg-secondary"
-            type="text"
-            placeholder="Program Name"
-            value={props.programName}
-            onChange={(e) => props.setProgramName(e.target.value)}
-          />
-        </div>
+        <input
+          id="program-name"
+          className="form-control bg-secondary"
+          type="text"
+          placeholder="Program Name"
+          value={props.programName}
+          onChange={(e) => props.setProgramName(e.target.value)}
+          required
+        />
         <RiRepeat className="fs-4 ms-3" />
         <div className="ms-2 me-auto">
           <input
@@ -37,22 +45,21 @@ export function ProgramEditorComponent(props: PropsType) {
             onChange={(e) => props.setLoops(+e.target.value)}
           />
         </div>
-        <MdOutlineDeleteForever
-          className="fs-4 ms-3"
+        <MdDelete
+          className="fs-3 ms-3 text-danger"
           role="button"
           aria-label="Delete program"
           onClick={() => props.deleteProgram()}
         />
-        <MdCheck
-          className="ms-3 fs-3"
-          role="button"
+        <button
+          type="submit"
+          className="ms-0 ms-lg-2 fs-3 btn"
           aria-label="Save program"
-          onClick={() => props.saveProgram()}
-        />
+        >
+          <MdSave />
+        </button>
       </div>
-      <div>
-        <StepListEditorContainer />
-      </div>
-    </>
+      <StepListEditorContainer />
+    </form>
   );
 }

@@ -48,6 +48,7 @@ export function StepEditorComponent(props: PropsType) {
             placeholder={nameLabel + " Name"}
             value={props.stepName}
             onChange={(e) => props.onSetStepName(props.stepId, e.target.value)}
+            required
           />
         </div>
 

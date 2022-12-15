@@ -47,7 +47,7 @@ export function NewProgramPage() {
   }, []);
 
   return (
-    <div className="pt-3 p-2">
+    <div className="pt-1">
       <div className="w-50 m-auto">
         <SetSelectorComponent
           currentSetId={program.setId}

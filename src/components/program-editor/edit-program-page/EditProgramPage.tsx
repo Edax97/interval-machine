@@ -52,7 +52,7 @@ export function EditProgramPage() {
   );
 
   return (
-    <div className="pt-3 p-2">
+    <div className="pt-1">
       <div className="text-center">
         <span className="badge bg-opacity-75 bg-dark me-2">Group</span>
         <span className="fs-6 fw-bold">{currentSet?.setName}</span>
