@@ -11,7 +11,7 @@ Timer app for the browser. Programs are customizable and can be grouped by theme
 
 ## Demo
 
-![Cover gif]()
+![Cover gif](https://i.imgur.com/59drl5T.gif)
 
 ## Production
 
