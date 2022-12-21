@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ModalWindow } from "../modal-window/ModalWindow";
 
 interface PropsType {
   id: string;
@@ -26,7 +25,7 @@ export function ModalEdit(props: PropsType) {
   };
 
   return (
-    <ModalWindow id={props.id} modalTitle={props.modalTitle}>
+    <div id={props.id}>
       <div className="form-floating">
         <input
           className="form-control"
@@ -50,6 +49,6 @@ export function ModalEdit(props: PropsType) {
           {props.buttonLabel}
         </button>
       </div>
-    </ModalWindow>
+    </div>
   );
 }

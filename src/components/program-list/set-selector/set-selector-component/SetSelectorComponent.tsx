@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { MdOutlineDeleteForever, MdOutlineEdit } from "react-icons/md";
 import { ProgramSetType } from "../../../../types/program-list/program-set.type";
+import { ModalDelete } from "../../../common/modal/modal-delete/ModalDelete";
 
 interface PropsType {
   currentSetId: number | null;
@@ -30,21 +31,24 @@ export function SetSelectorComponent(props: PropsType) {
       <div className="dropdown d-flex align-items-center justify-content-center">
         <span className="badge bg-opacity-75 bg-dark me-2">Group</span>
         <span className="me-5 fs-6 fw-bold">{currentSetName}</span>
-        <span className={`ms-2 ${hideClass}`}>
-          <MdOutlineEdit
-            className="fs-4"
-            role="button"
-            aria-label="Edit group name"
-            onClick={props.onEdit}
-          />
+        {!props.hideDelete && (
+          <>
+            <MdOutlineEdit
+              className="fs-4 ms-2"
+              role="button"
+              aria-label="Edit group name"
+              onClick={props.onEdit}
+            />
 
-          <MdOutlineDeleteForever
-            className={"fs-4 ms-2 text-danger"}
-            role="button"
-            aria-label="Delete current group"
-            onClick={props.onDelete}
-          />
-        </span>
+            <ModalDelete
+              modalTitle="Delete Group"
+              modalMessage={`Do you want to delete ${currentSetName}`}
+              onDelete={props.onDelete}
+            >
+              <MdOutlineDeleteForever className={"fs-4 text-danger"} />
+            </ModalDelete>
+          </>
+        )}
 
         <button
           className="btn dropdown-toggle ms-2"
@@ -83,4 +87,6 @@ export function SetSelectorComponent(props: PropsType) {
 }
 
 /*
+ <div>
+              
  */
