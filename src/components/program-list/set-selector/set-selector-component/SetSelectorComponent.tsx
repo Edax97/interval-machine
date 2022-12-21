@@ -41,8 +41,8 @@ export function SetSelectorComponent(props: PropsType) {
             />
 
             <ModalDelete
-              modalTitle="Delete Group"
-              modalMessage={`Do you want to delete ${currentSetName}`}
+              title="Delete Group"
+              message={`Do you want to delete ${currentSetName}`}
               onDelete={props.onDelete}
             >
               <MdOutlineDeleteForever className={"fs-4 text-danger"} />
