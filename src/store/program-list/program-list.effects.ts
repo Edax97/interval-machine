@@ -8,11 +8,10 @@ import { AppThunkType } from "../app/store";
 import { setCurrentSetAction, setSetListAction } from "./program-list.actions";
 
 export const getProgramListEffect = (): AppThunkType<any> => {
-  return (dispatch, getState) => {
-    //try from local storage, otherwise from hardcoded state
+  return async (dispatch, getState) => {
+    //try from local storage, otherwise from data service
     let programListState = loadState<ProgramListState>("programList");
-    if (!programListState)
-      getProgramsService().then((r) => (programListState = r));
+    if (!programListState) programListState = await getProgramsService();
     if (!programListState) return;
 
     const { setList, currentSetId } = programListState;
