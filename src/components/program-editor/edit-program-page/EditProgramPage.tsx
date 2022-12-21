@@ -1,10 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/app/hooks";
-import {
-  removeProgramAction,
-  setCurrentSetAction,
-} from "../../../store/program-list/program-list.actions";
+
 import { setListListener } from "../../../store/program-list/program-list.listeners";
 import {
   getProgramEffect,
@@ -18,32 +15,22 @@ export function EditProgramPage() {
   const navigate = useNavigate();
   const params = useParams();
 
-  //On mount
+  //Edit Program
+  const { program, setProgramName, setLoops } = useCurrentProgram();
   useEffect(() => {
     const { setId, programId } = params;
     if (setId && programId) dispatch(getProgramEffect(+setId, +programId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const { program, setProgramName, setLoops } = useCurrentProgram();
-
   const saveProgram = () => {
     dispatch(saveProgramEffect(program.setId, program.id));
-    //Ir al grupo del programa
-    dispatch(setCurrentSetAction(program.setId));
     navigate(`/play-program/${program.setId}/${program.id}`);
   };
-  const deleteProgram = () => {
-    dispatch(
-      removeProgramAction({ setId: program.setId, programId: program.id })
-    );
-    //Ir a home
-    navigate("/programs");
-  };
 
+  //Get program Set Name
   const setList = useAppSelector(setListListener);
-  const currentSet = useMemo(
-    () => setList.find((set) => set.id === program.setId),
+  const currentSetName = useMemo(
+    () => setList.find((set) => set.id === program.setId)?.setName,
     [program, setList]
   );
 
@@ -51,7 +38,7 @@ export function EditProgramPage() {
     <div className="pt-1">
       <div className="text-center">
         <span className="badge bg-opacity-75 bg-dark me-2">Group</span>
-        <span className="fs-6 fw-bold">{currentSet?.setName}</span>
+        <span className="fs-6 fw-bold">{currentSetName}</span>
       </div>
       <div className="pt-3">
         <ProgramEditorComponent
@@ -60,7 +47,7 @@ export function EditProgramPage() {
           setProgramName={setProgramName}
           setLoops={setLoops}
           saveProgram={saveProgram}
-          deleteProgram={deleteProgram}
+          cancelChanges={() => navigate("/programs")}
         />
       </div>
     </div>

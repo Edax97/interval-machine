@@ -1,25 +1,21 @@
 import React, { useMemo } from "react";
 import { MdOutlineDeleteForever, MdOutlineEdit } from "react-icons/md";
 import { ProgramSetType } from "../../../../types/program-list/program-set.type";
+import { ModalDelete } from "../../../common/modal/modal-delete/ModalDelete";
+import { ModalEdit } from "../../../common/modal/modal-edit/ModalEditt";
 
 interface PropsType {
   currentSetId: number | null;
   setList: ProgramSetType[];
   selectSet: (setId: number) => void;
-  hideDelete: boolean;
-
-  //deleteId, createId, editId
-  deleteModalId?: string;
-  createModalId?: string;
-  editModalId?: string;
+  hideDelete?: boolean;
+  //onDelete, onCreate, onEdit
+  onDelete?: () => void;
+  onCreate?: (setName: string) => void;
+  onEdit?: (setName: string) => void;
 }
 
 export function SetSelectorComponent(props: PropsType) {
-  const hideClass = useMemo(
-    () => (props.hideDelete ? "d-none" : ""),
-    [props.hideDelete]
-  );
-
   const currentSetName = useMemo(
     () =>
       props.setList.find((set) => set.id === props.currentSetId)?.setName || "",
@@ -31,26 +27,29 @@ export function SetSelectorComponent(props: PropsType) {
       <div className="dropdown d-flex align-items-center justify-content-center">
         <span className="badge bg-opacity-75 bg-dark me-2">Group</span>
         <span className="me-5 fs-6 fw-bold">{currentSetName}</span>
-        <span className={`ms-2 ${hideClass}`}>
-          <MdOutlineEdit
-            className="fs-4"
-            role="button"
-            aria-label="Edit group name"
-            data-bs-toggle="modal"
-            data-bs-target={`#${props.editModalId}`}
-          />
+        {!props.hideDelete && props.onDelete && props.onEdit && (
+          <span className="d-flex gap-3">
+            <ModalEdit
+              title="Edit Group"
+              editLabel="Group name"
+              initialName={currentSetName}
+              onSave={props.onEdit}
+            >
+              <MdOutlineEdit className="fs-4 text-muted" />
+            </ModalEdit>
 
-          <MdOutlineDeleteForever
-            className={"fs-4 ms-2 text-danger"}
-            role="button"
-            aria-label="Delete current group"
-            data-bs-toggle="modal"
-            data-bs-target={`#${props.deleteModalId}`}
-          />
-        </span>
+            <ModalDelete
+              title="Delete Group"
+              message={`Do you want to delete ${currentSetName}?`}
+              onDelete={props.onDelete}
+            >
+              <MdOutlineDeleteForever className={"fs-4 text-danger"} />
+            </ModalDelete>
+          </span>
+        )}
 
         <button
-          className="btn dropdown-toggle ms-2"
+          className="btn btn-lg dropdown-toggle ms-2"
           id="select-expand"
           data-bs-toggle="dropdown"
           aria-label="Select program set"
@@ -71,15 +70,18 @@ export function SetSelectorComponent(props: PropsType) {
               </button>
             </li>
           ))}
-          <li className={hideClass}>
-            <button
-              className="dropdown-item text-success"
-              data-bs-toggle="modal"
-              data-bs-target={`#${props.createModalId}`}
-            >
-              New group
-            </button>
-          </li>
+          {!props.hideDelete && props.onCreate && (
+            <li>
+              <ModalEdit
+                title="Create Group"
+                editLabel="Group name"
+                initialName=""
+                onSave={props.onCreate}
+              >
+                <div className="dropdown-item text-success">New group</div>
+              </ModalEdit>
+            </li>
+          )}
         </ul>
       </div>
     </div>
@@ -87,4 +89,6 @@ export function SetSelectorComponent(props: PropsType) {
 }
 
 /*
+ <div>
+              
  */

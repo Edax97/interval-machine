@@ -20,30 +20,26 @@ export function NewProgramPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  //Program Editor
   const { program, setProgramName, setLoops } = useCurrentProgram();
-
   const saveProgram = () => {
     dispatch(newProgramEffect(program.setId));
     //Ir al grupo donde se creo el programa
     dispatch(setCurrentSetAction(program.setId));
     navigate("/programs");
   };
-  const deleteProgram = () => {
-    navigate("/programs");
-  };
 
+  //set selector
   const initialSetId = useAppSelector(currentSetIdListener);
   const setList = useAppSelector(setListListener);
-  const selectSet = (setId: number) => {
-    dispatch(setSetIdAction(setId));
-  };
-
-  //Mount
   useEffect(() => {
     dispatch(resetProgramAction());
     if (initialSetId !== null) dispatch(setSetIdAction(initialSetId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const selectSet = (setId: number) => {
+    dispatch(setSetIdAction(setId));
+  };
 
   return (
     <div className="pt-1">
@@ -62,7 +58,7 @@ export function NewProgramPage() {
           setProgramName={setProgramName}
           setLoops={setLoops}
           saveProgram={saveProgram}
-          deleteProgram={deleteProgram}
+          cancelChanges={() => navigate("/programs")}
         />
       </div>
     </div>

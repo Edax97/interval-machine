@@ -25,10 +25,7 @@ export function StepPlayComponent(props: PropsType) {
   );
 
   return (
-    <CardItem
-      className={`mt-2 ${props.isPlayingStep ? "active-item" : ""}`}
-      withoutRemove={true}
-    >
+    <CardItem className={`mt-2 ${props.isPlayingStep ? "active-item" : ""}`}>
       <div className="d-flex align-items-center" onClick={props.onStepPlay}>
         <MdPlayCircle
           className="fs-1"
