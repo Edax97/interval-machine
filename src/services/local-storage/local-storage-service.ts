@@ -1,18 +1,16 @@
-import { ProgramListState } from "../../types/program-list/program-list-state.type";
-
-export const loadState = (item: string) => {
+export const loadState = <T>(item: string): T | null => {
   try {
     const serializedState = localStorage.getItem(item);
     if (serializedState === null) {
-      return undefined;
+      return null;
     }
     return JSON.parse(serializedState);
   } catch (err) {
-    return undefined;
+    return null;
   }
 };
 
-export const saveState = (item: string, state: ProgramListState) => {
+export const saveState = <T>(item: string, state: T) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem(item, serializedState);

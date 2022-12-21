@@ -1,10 +1,22 @@
+import { ProgramListState } from "../../types/program-list/program-list-state.type";
 import { handleError, handleResponse } from "../api-utils/api-utils";
 import { initialProgramList } from "./initial-program-list";
-const API_URL = "http://localhost:3001/programs";
+//const PROGRAMS_URL = "http://localhost:3001/programs";
 
-export function fetchProgramSets() {
-  return fetch(API_URL).then(handleResponse).catch(handleError);
+export function fetchData<T>(API_URL: string) {
+  return fetch(API_URL)
+    .then(handleResponse<T>)
+    .catch(handleError);
 }
-export function getInitialProgramList() {
-  return initialProgramList;
+export function getLocalData<T>(data: T): Promise<T | null> {
+  return new Promise((resolve, reject) => {
+    if (data) resolve(data);
+    else resolve(null);
+  });
+}
+
+export const getData = <T>(getter: () => Promise<T | null>) => getter();
+
+export function getProgramsService() {
+  return getData(() => getLocalData<ProgramListState>(initialProgramList));
 }
