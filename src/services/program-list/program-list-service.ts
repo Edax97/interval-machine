@@ -15,6 +15,8 @@ export function getLocalData<T>(data: T): Promise<T | null> {
   });
 }
 
+export const getData = <T>(getter: () => Promise<T | null>) => getter();
+
 export function getProgramsService() {
-  return getLocalData<ProgramListState>(initialProgramList);
+  return getData(() => getLocalData<ProgramListState>(initialProgramList));
 }
