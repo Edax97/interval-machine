@@ -1,4 +1,7 @@
-import { loadState } from "../../services/local-storage/local-storage-service";
+import {
+  loadState,
+  saveState,
+} from "../../services/local-storage/local-storage-service";
 import { getInitialProgramList } from "../../services/program-list/program-list-service";
 import { AppThunkType } from "../app/store";
 import { setCurrentSetAction, setSetListAction } from "./program-list.actions";
@@ -12,5 +15,14 @@ export const getProgramListEffect = (): AppThunkType<any> => {
 
     dispatch(setSetListAction(setList));
     dispatch(setCurrentSetAction(currentSetId || 0));
+  };
+};
+
+export const saveProgramListEffect = (): AppThunkType<any> => {
+  return (dispatch, getState) => {
+    //save state in local storage
+    const programList = getState().programList;
+    if (programList.currentSetId !== null)
+      saveState("programList", programList);
   };
 };

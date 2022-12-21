@@ -1,4 +1,3 @@
-import { saveState } from "../../services/local-storage/local-storage-service";
 import { AppThunkType } from "../app/store";
 import {
   editProgramAction,
@@ -27,9 +26,6 @@ export const newProgramEffect = (setId: number): AppThunkType<any> => {
     const state = getState();
     const currentProgram = state.program.currentProgram;
     dispatch(newProgramAction({ setId, program: currentProgram }));
-
-    //save programList in localStorage
-    dispatch(saveProgramListStateEffect());
   };
 };
 
@@ -43,13 +39,5 @@ export const saveProgramEffect = (
     dispatch(
       editProgramAction({ setId, programId, programUpdated: currentProgram })
     );
-    dispatch(saveProgramListStateEffect());
-  };
-};
-
-export const saveProgramListStateEffect = (): AppThunkType<any> => {
-  return (dispatch, getState) => {
-    const state = getState();
-    saveState("programList", state.programList);
   };
 };
