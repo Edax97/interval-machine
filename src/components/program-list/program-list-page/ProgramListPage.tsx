@@ -6,7 +6,7 @@ export function ProgramListPage() {
   return (
     <div className="text-center">
       <div className="">
-        <SetSelectorContainer hideDelete={false} />
+        <SetSelectorContainer />
       </div>
       <div className="mt-3">
         <ProgramListContainer />

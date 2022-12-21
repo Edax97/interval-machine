@@ -6,12 +6,11 @@ interface PropsType {
   currentSetId: number | null;
   setList: ProgramSetType[];
   selectSet: (setId: number) => void;
-  hideDelete: boolean;
-
-  //deleteId, createId, editId
-  deleteModalId?: string;
-  createModalId?: string;
-  editModalId?: string;
+  hideDelete?: boolean;
+  //onDelete, onCreate, onEdit
+  onDelete?: () => void;
+  onCreate?: () => void;
+  onEdit?: () => void;
 }
 
 export function SetSelectorComponent(props: PropsType) {
@@ -36,16 +35,14 @@ export function SetSelectorComponent(props: PropsType) {
             className="fs-4"
             role="button"
             aria-label="Edit group name"
-            data-bs-toggle="modal"
-            data-bs-target={`#${props.editModalId}`}
+            onClick={props.onEdit}
           />
 
           <MdOutlineDeleteForever
             className={"fs-4 ms-2 text-danger"}
             role="button"
             aria-label="Delete current group"
-            data-bs-toggle="modal"
-            data-bs-target={`#${props.deleteModalId}`}
+            onClick={props.onDelete}
           />
         </span>
 
@@ -74,8 +71,7 @@ export function SetSelectorComponent(props: PropsType) {
           <li className={hideClass}>
             <button
               className="dropdown-item text-success"
-              data-bs-toggle="modal"
-              data-bs-target={`#${props.createModalId}`}
+              onClick={props.onCreate}
             >
               New group
             </button>

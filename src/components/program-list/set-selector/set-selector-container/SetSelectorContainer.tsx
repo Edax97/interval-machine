@@ -14,11 +14,7 @@ import { ModalDelete } from "../../../common/modal/modal-delete/ModalDelete";
 import { ModalEdit } from "../../../common/modal/modal-edit/ModalEditt";
 import { SetSelectorComponent } from "../set-selector-component/SetSelectorComponent";
 
-interface PropsType {
-  hideDelete: boolean;
-}
-
-export function SetSelectorContainer(props: PropsType) {
+export function SetSelectorContainer() {
   const dispatch = useAppDispatch();
   const currentSetId = useAppSelector(currentSetIdListener);
   const setList = useAppSelector(setListListener);
@@ -30,14 +26,25 @@ export function SetSelectorContainer(props: PropsType) {
   const selectSet = (setId: number) => {
     dispatch(setCurrentSetAction(setId));
   };
+
   const deleteSet = (setId: number) => {
     dispatch(removeSetAction(setId));
   };
+  const onDelete = () => {
+    console.log("Delete");
+  };
+
   const createSet = (setName: string) => {
     dispatch(newSetAction(setName));
   };
+  const onCreate = () => {
+    console.log("Create");
+  };
   const editSetName = (setId: number, setName: string) => {
     dispatch(editSetNameAction({ setId, setName }));
+  };
+  const onEdit = () => {
+    console.log("Edit");
   };
 
   const deleteModalId = "delete-modal";
@@ -51,10 +58,9 @@ export function SetSelectorContainer(props: PropsType) {
         currentSetId={currentSetId}
         setList={setList}
         selectSet={selectSet}
-        deleteModalId={deleteModalId}
-        createModalId={createModalId}
-        editModalId={editModalId}
-        hideDelete={props.hideDelete}
+        onDelete={onDelete}
+        onCreate={onCreate}
+        onEdit={onEdit}
       />
       <ModalDelete
         id={deleteModalId}
