@@ -26,16 +26,16 @@ export function ProgramItemComponent(props: PropsType) {
         </ModalDelete>
       }
     >
-      <div className="d-flex align-items-center pt-3">
+      <div className="d-flex align-items-center pt-4">
         <div className="me-auto fs-6 fw-bold">{props.programName}</div>
         <Link to={`/edit-program/${props.setId}/${props.programId}`}>
-          <MdSettings className="fs-2 text-muted" />
+          <MdSettings className="text-muted p-item-link" />
         </Link>
         <Link
           className="ms-2"
           to={`/play-program/${props.setId}/${props.programId}`}
         >
-          <MdPlayCircle className="fs-2" />
+          <MdPlayCircle className="p-item-link" />
         </Link>
       </div>
     </CardItem>
