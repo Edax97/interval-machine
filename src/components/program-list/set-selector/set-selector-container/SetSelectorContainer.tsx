@@ -29,7 +29,7 @@ export function SetSelectorContainer() {
   };
 
   const editSetName = (setName: string) => {
-    if (currentSetId)
+    if (currentSetId !== null)
       dispatch(editSetNameAction({ setId: currentSetId, setName }));
   };
 
