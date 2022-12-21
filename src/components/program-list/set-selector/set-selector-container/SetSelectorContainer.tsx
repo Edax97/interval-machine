@@ -28,8 +28,9 @@ export function SetSelectorContainer() {
     dispatch(newSetAction(setName));
   };
 
-  const editSetName = (setId: number, setName: string) => {
-    dispatch(editSetNameAction({ setId, setName }));
+  const editSetName = (setName: string) => {
+    if (currentSetId)
+      dispatch(editSetNameAction({ setId: currentSetId, setName }));
   };
 
   if (currentSetId === null) return null;
@@ -40,8 +41,8 @@ export function SetSelectorContainer() {
         setList={setList}
         selectSet={selectSet}
         onDelete={() => deleteSet(currentSetId)}
-        onCreate={() => createSet("")}
-        onEdit={() => editSetName(0, "")}
+        onCreate={createSet}
+        onEdit={editSetName}
       />
     </div>
   );

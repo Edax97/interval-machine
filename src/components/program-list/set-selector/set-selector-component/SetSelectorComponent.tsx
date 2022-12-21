@@ -28,7 +28,7 @@ export function SetSelectorComponent(props: PropsType) {
         <span className="badge bg-opacity-75 bg-dark me-2">Group</span>
         <span className="me-5 fs-6 fw-bold">{currentSetName}</span>
         {!props.hideDelete && props.onDelete && props.onEdit && (
-          <>
+          <span className="d-flex gap-3">
             <ModalEdit
               title="Edit Group"
               editLabel="Group name"
@@ -45,11 +45,11 @@ export function SetSelectorComponent(props: PropsType) {
             >
               <MdOutlineDeleteForever className={"fs-4 text-danger"} />
             </ModalDelete>
-          </>
+          </span>
         )}
 
         <button
-          className="btn dropdown-toggle ms-2"
+          className="btn btn-lg dropdown-toggle ms-2"
           id="select-expand"
           data-bs-toggle="dropdown"
           aria-label="Select program set"

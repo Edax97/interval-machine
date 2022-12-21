@@ -5,6 +5,8 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { stepStyles } from "../../../../services/step-style/step-style";
 import { CardItem } from "../../../common/card-item/CardItem";
 import { toMMSS } from "../../../../services/utils/time-utils";
+import { ModalDelete } from "../../../common/modal/modal-delete/ModalDelete";
+import { MdClear } from "react-icons/md";
 
 interface PropsType {
   stepId: number;
@@ -37,7 +39,15 @@ export function StepEditorComponent(props: PropsType) {
   return (
     <CardItem
       className="mt-2 bg-secondary"
-      onRemove={() => props.onRemove(props.stepId)}
+      removeElement={
+        <ModalDelete
+          title="Delete Step"
+          message={`Do you want to delete ${props.stepName}?`}
+          onDelete={() => props.onRemove(props.stepId)}
+        >
+          <MdClear />
+        </ModalDelete>
+      }
     >
       <div className="d-flex align-items-center pt-3">
         <div className="hint" style={{ backgroundColor: stepColor }}></div>
