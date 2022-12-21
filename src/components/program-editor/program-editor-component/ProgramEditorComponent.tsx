@@ -1,7 +1,6 @@
 import { MdRepeat as RiRepeat } from "react-icons/md";
 import "./program-editor-component.scss";
 import { MdSave, MdArrowBack as MdCancel } from "react-icons/md";
-import { StepListEditorContainer } from "../step-editor/step-likst-editor-container/StepListEditorContainer";
 
 interface PropsType {
   programName: string;
@@ -55,7 +54,6 @@ export function ProgramEditorComponent(props: PropsType) {
           <MdSave />
         </button>
       </div>
-      <StepListEditorContainer />
     </form>
   );
 }

@@ -1,20 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../store/app/hooks";
+import { useAppDispatch } from "../../../store/app/hooks";
 import { setCurrentSetAction } from "../../../store/program-list/program-list.actions";
-import {
-  currentSetIdListener,
-  setListListener,
-} from "../../../store/program-list/program-list.listeners";
-import {
-  resetProgramAction,
-  setSetIdAction,
-} from "../../../store/program/program.actions";
 import { newProgramEffect } from "../../../store/program/program.effects";
-import { SetSelectorComponent } from "../../program-list/set-selector/set-selector-component/SetSelectorComponent";
 import { useCurrentProgram } from "../hooks/use-current-program";
 import { ProgramEditorComponent } from "../program-editor-component/ProgramEditorComponent";
+import { StepControlsContainer } from "../components/step-controls/step-controls-container/StepControlsContainer";
+import { StepEditorContainer } from "../components/step-editor/step-editor-container/StepEditorContainer";
+import { GroupSelectorContainer } from "../components/group-selector/GroupSelectorContainer";
 
 export function NewProgramPage() {
   const navigate = useNavigate();
@@ -29,28 +22,9 @@ export function NewProgramPage() {
     navigate("/programs");
   };
 
-  //set selector
-  const initialSetId = useAppSelector(currentSetIdListener);
-  const setList = useAppSelector(setListListener);
-  useEffect(() => {
-    dispatch(resetProgramAction());
-    if (initialSetId !== null) dispatch(setSetIdAction(initialSetId));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const selectSet = (setId: number) => {
-    dispatch(setSetIdAction(setId));
-  };
-
   return (
     <div className="pt-1">
-      <div className="w-50 m-auto">
-        <SetSelectorComponent
-          currentSetId={program.setId}
-          setList={setList}
-          selectSet={selectSet}
-          hideDelete
-        />
-      </div>
+      <GroupSelectorContainer />
       <div className="pt-3">
         <ProgramEditorComponent
           programName={program.programName}
@@ -61,6 +35,10 @@ export function NewProgramPage() {
           cancelChanges={() => navigate("/programs")}
         />
       </div>
+      <div className="mt-2">
+        <StepEditorContainer />
+      </div>
+      <StepControlsContainer />
     </div>
   );
 }
