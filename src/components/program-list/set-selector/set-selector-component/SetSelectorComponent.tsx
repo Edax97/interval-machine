@@ -35,7 +35,7 @@ export function SetSelectorComponent(props: PropsType) {
               initialName={currentSetName}
               onSave={props.onEdit}
             >
-              <MdOutlineEdit className="fs-4" />
+              <MdOutlineEdit className="fs-4 text-muted" />
             </ModalEdit>
 
             <ModalDelete

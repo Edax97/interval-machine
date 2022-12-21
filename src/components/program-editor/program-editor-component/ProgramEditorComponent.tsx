@@ -1,6 +1,6 @@
 import { MdRepeat as RiRepeat } from "react-icons/md";
 import "./program-editor-component.scss";
-import { MdSave, MdOutlineDeleteForever as MdDelete } from "react-icons/md";
+import { MdSave, MdArrowBack as MdCancel } from "react-icons/md";
 import { StepListEditorContainer } from "../step-editor/step-likst-editor-container/StepListEditorContainer";
 
 interface PropsType {
@@ -9,7 +9,7 @@ interface PropsType {
   setProgramName: (programName: string) => void;
   setLoops: (loops: number) => void;
   saveProgram: () => void;
-  deleteProgram: () => void;
+  cancelChanges: () => void;
 }
 
 export function ProgramEditorComponent(props: PropsType) {
@@ -41,11 +41,11 @@ export function ProgramEditorComponent(props: PropsType) {
             onChange={(e) => props.setLoops(+e.target.value)}
           />
         </div>
-        <MdDelete
-          className="fs-3 ms-3 text-danger"
+        <MdCancel
+          className="fs-3 ms-3 text-muted"
           role="button"
-          aria-label="Delete program"
-          onClick={() => props.deleteProgram()}
+          aria-label="Cancel changes"
+          onClick={() => props.cancelChanges()}
         />
         <button
           type="submit"
