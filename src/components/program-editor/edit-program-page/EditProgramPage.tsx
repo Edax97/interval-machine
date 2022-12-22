@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/app/hooks";
 
@@ -7,16 +7,17 @@ import {
   getProgramEffect,
   saveProgramEffect,
 } from "../../../store/program/program.effects";
-import { useCurrentProgram } from "../hooks/use-current-program";
-import { ProgramEditorComponent } from "../program-editor-component/ProgramEditorComponent";
+import { currentProgramListener } from "../../../store/program/program.listeners";
+import { ProgramControlsContainer } from "../components/program-controls/program-controls-container/ProgramControlsContainer";
+import { StepControlsContainer } from "../components/step-controls/step-controls-container/StepControlsContainer";
+import { StepEditorContainer } from "../components/step-editor/step-editor-container/StepEditorContainer";
 
 export function EditProgramPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const params = useParams();
 
-  //Edit Program
-  const { program, setProgramName, setLoops } = useCurrentProgram();
+  const program = useAppSelector(currentProgramListener);
   useEffect(() => {
     const { setId, programId } = params;
     if (setId && programId) dispatch(getProgramEffect(+setId, +programId));
@@ -40,16 +41,20 @@ export function EditProgramPage() {
         <span className="badge bg-opacity-75 bg-dark me-2">Group</span>
         <span className="fs-6 fw-bold">{currentSetName}</span>
       </div>
-      <div className="pt-3">
-        <ProgramEditorComponent
-          programName={program.programName}
-          loops={program.loops}
-          setProgramName={setProgramName}
-          setLoops={setLoops}
-          saveProgram={saveProgram}
-          cancelChanges={() => navigate("/programs")}
-        />
-      </div>
+      <form
+        className="pt-3"
+        onSubmit={(ev) => {
+          ev.preventDefault();
+          saveProgram();
+        }}
+      >
+        <ProgramControlsContainer />
+        <div className="mt-2">
+          <StepEditorContainer />
+        </div>
+      </form>
+
+      <StepControlsContainer />
     </div>
   );
 }

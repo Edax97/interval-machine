@@ -1,9 +1,5 @@
-import React from "react";
-import { stepStyles } from "../../../../../services/step-style/step-style";
 import { useAppDispatch, useAppSelector } from "../../../../../store/app/hooks";
 import {
-  addNotifierAction,
-  addStepAction,
   removeStepAction,
   setStepNameAction,
   setStepTimeAction,
