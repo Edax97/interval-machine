@@ -1,0 +1,12 @@
+#program-name {
+  width: 12rem;
+  @media screen and (min-width: 662px) {
+    width: 15rem;
+  }
+}
+
+.input-group {
+  button {
+    border: 1px solid #ced4da;
+  }
+}

@@ -49,7 +49,7 @@ export const programSlice = createSlice({
     },
     setLoopsAction: (state, action: PayloadAction<number>) => {
       const loops = action.payload;
-      if (loops > 0) state.currentProgram.loops = loops;
+      if (loops > 0 && loops < 10) state.currentProgram.loops = loops;
     },
     setStepNameAction: (
       state,

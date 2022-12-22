@@ -35,7 +35,7 @@ export function SetSelectorComponent(props: PropsType) {
               initialName={currentSetName}
               onSave={props.onEdit}
             >
-              <MdOutlineEdit className="fs-4 text-muted" />
+              <MdOutlineEdit className="fs-2 fs-lg-4  text-muted" />
             </ModalEdit>
 
             <ModalDelete
@@ -43,7 +43,7 @@ export function SetSelectorComponent(props: PropsType) {
               message={`Do you want to delete ${currentSetName}?`}
               onDelete={props.onDelete}
             >
-              <MdOutlineDeleteForever className={"fs-4 text-danger"} />
+              <MdOutlineDeleteForever className={"fs-2 fs-lg-4 text-danger"} />
             </ModalDelete>
           </span>
         )}
@@ -61,9 +61,9 @@ export function SetSelectorComponent(props: PropsType) {
           aria-labelledby="select-expand"
         >
           {props.setList.map((set) => (
-            <li key={set.id}>
+            <li key={set.id} className="py-0">
               <button
-                className="dropdown-item"
+                className="dropdown-item py-2"
                 onClick={() => props.selectSet(set.id)}
               >
                 {set.setName}
@@ -78,7 +78,7 @@ export function SetSelectorComponent(props: PropsType) {
                 initialName=""
                 onSave={props.onCreate}
               >
-                <div className="dropdown-item text-success">New group</div>
+                <div className="dropdown-item text-success py-2">New group</div>
               </ModalEdit>
             </li>
           )}

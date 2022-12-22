@@ -1,10 +1,8 @@
-@import "./styles/variables.scss";
+@import "./styles/bootstrap";
 
-@import "bootstrap/scss/bootstrap";
+@import "./styles/components";
 
-@import "./styles/components.scss";
-
-@import "./styles/utils.scss";
+@import "./styles/utils";
 
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&family=Unbounded&display=swap");
 

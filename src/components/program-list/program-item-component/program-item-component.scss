@@ -1,1 +1,6 @@
-
+.p-item-link {
+  font-size: 2.2rem;
+  @media screen and (min-width: 662px) {
+    font-size: 1.9rem;
+  }
+}
