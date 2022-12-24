@@ -6,19 +6,22 @@ export function AboutPage() {
   return (
     <div className="page-center">
       <div className="text-center">
-        <h1 className="text-primary display-3">Interval Machine</h1>
-        <p className="text-muted mt-3">@Edmar Campos 2022</p>
+        <h1 className="text-primary display-3 fw-bold">Interval Machine</h1>
 
-        <div className="d-flex justify-content-center gap-3 gap-lg-4">
+        <section className="text-center mt-2 mt-lg-4">
+          <p className="fs-5 fs-lg-4 opacity-75">Timer app for the browser.</p>
+        </section>
+        <section className="mt-4 text-center">
           <a
-            href="https://github.com/Edax97"
-            aria-label="My github"
+            href="https://github.com/Edax97/interval-machine"
+            aria-label="Github repository"
             target="_blank"
             rel="noreferrer"
           >
             <FaGithub className="about-icon" />
           </a>
           <a
+            className="ms-4 ms-lg-5"
             href="https://www.linkedin.com/in/edwin-edmar-campos-alarcon/"
             aria-label="My Linkedin"
             target="_blank"
@@ -26,7 +29,8 @@ export function AboutPage() {
           >
             <FaLinkedin className="about-icon" />
           </a>
-        </div>
+        </section>
+        <div className="text-center mt-3"></div>
       </div>
     </div>
   );
