@@ -1,10 +1,7 @@
-#program-name {
-  width: 12rem;
-  @media screen and (min-width: 662px) {
-    width: 15rem;
-  }
+.select-all {
+  -webkit-user-select: all;
+  user-select: all;
 }
-
 .input-group {
   button {
     border: 1px solid #ced4da;
